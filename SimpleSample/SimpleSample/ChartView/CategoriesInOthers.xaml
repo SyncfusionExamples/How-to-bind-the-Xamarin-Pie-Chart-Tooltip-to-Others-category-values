@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+                xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:local="clr-namespace:SimpleSample"
+             x:Class="SimpleSample.CategoriesInOthers">
+    <ContentView.Resources>
+        <local:ChartValueConverter x:Key="itemsSourceConverter"/>
+        <DataTemplate x:Key="TooltipTemplate">
+            <StackLayout BackgroundColor="LightBlue" Padding="5" BindableLayout.ItemsSource="{Binding Converter={StaticResource itemsSourceConverter}}" >
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="{Binding XData}" TextColor="{Binding Color}" FontSize="12" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding YData}" TextColor="White" FontSize="12" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </DataTemplate>
+    </ContentView.Resources>
+  <ContentView.Content>
+        <chart:SfChart BackgroundColor="Transparent">
+            <chart:SfChart.Legend>
+                <chart:ChartLegend DockPosition="Bottom" />
+            </chart:SfChart.Legend>
+            <chart:SfChart.Series>
+                <chart:PieSeries ItemsSource="{Binding MonthlyExpenses}" 
+                                                    XBindingPath="XData" 
+                                                    YBindingPath="YData" 
+                                                  CircularCoefficient="0.7" StartAngle="90" EndAngle="450"
+                                                  EnableTooltip="true"
+                                             GroupMode="Value"
+                                             GroupTo="50"
+                                                  TooltipTemplate="{StaticResource TooltipTemplate}"
+                                                    >
+                    <chart:PieSeries.DataMarker>
+                        <chart:ChartDataMarker x:Name="dataMarker">
+                            <chart:ChartDataMarker.LabelStyle>
+                                <chart:DataMarkerLabelStyle LabelPosition="Center" BackgroundColor="Transparent" TextColor="White" LabelFormat="$ ###"/>
+                            </chart:ChartDataMarker.LabelStyle>
+                        </chart:ChartDataMarker>
+                    </chart:PieSeries.DataMarker>
+                    <chart:PieSeries.ColorModel>
+                        <chart:ChartColorModel Palette="Custom" CustomBrushes="{Binding CustomColors}">
+                        </chart:ChartColorModel>
+                    </chart:PieSeries.ColorModel>
+                </chart:PieSeries>
+            </chart:SfChart.Series>
+            <chart:SfChart.ChartBehaviors>
+                <chart:ChartTooltipBehavior Duration="5000" BackgroundColor="LightBlue" BorderColor="Transparent" BorderWidth="0"/>
+            </chart:SfChart.ChartBehaviors>
+        </chart:SfChart>
+    </ContentView.Content>
+</ContentView>
