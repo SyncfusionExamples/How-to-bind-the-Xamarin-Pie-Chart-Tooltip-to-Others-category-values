@@ -1,4 +1,4 @@
-# How-to-bind-the-Xamarin-Pie-Chart-Tooltip-to-Others-category-values
+# How to bind the Xamarin.Forms pie chart tooltip to “Others” category values
 
 We always like to group smaller pie chart values into the category "Others" to increase chart readability. But we also think about ways to show those grouped values in UI. 
 
@@ -11,8 +11,7 @@ The example of the code below shows “How to calculate and display the average 
 
 ### Step 1: Declaration IValueConverter to calculate average values.
 
-{% tabs %} 
-
+```
 public class ChartAvgValueConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -43,17 +42,14 @@ public class ChartAvgValueConverter : IValueConverter
         return null;
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        return value;
-    }
 }
+```
 
 {% endhighlight %}
 
 ### Step 2: DataTemplate declarations.
 
-{% tabs %} 
+```
 <ContentView.Resources>
     <local:ChartAvgValueConverter x:Key="sumOfValuesConverter"/>
     <DataTemplate x:Key="TooltipTemplate">
@@ -63,11 +59,11 @@ public class ChartAvgValueConverter : IValueConverter
         </StackLayout>
     </DataTemplate>
 </ContentView.Resources>
-{% endhighlight %}
+```
 
 ### Step 3: DataTemplate defined in the Series Tooltip Template.
  
- {% tabs %} 
+ ```
  <chart:SfChart BackgroundColor="Transparent">
 . . .
     <chart:SfChart.Series>
@@ -87,7 +83,7 @@ public class ChartAvgValueConverter : IValueConverter
         <chart:ChartTooltipBehavior BackgroundColor="LightBlue
     </chart:SfChart.ChartBehaviors>
 </chart:SfChart>
-{% endhighlight %}
+```
 
 ## How to bind the Xamarin.Forms Pie Chart grouped data collection to the Tooltip
 
@@ -95,7 +91,7 @@ The example of the code below shows “How to display the values which present i
  
 Step 1: Declaration IValueConverter to generate BindableLayout ItemsSource
 
-{% tabs %} 
+```
 public class ChartValueConverter : IValueConverter
 {
 //Which returns ItemsSource for bindable layout.
@@ -118,17 +114,12 @@ public class ChartValueConverter : IValueConverter
 
         return value;
     }
-
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        return value;
-    }
 }
-{% endhighlight %}
+```
 
 Step 2: DataTemplate declarations with any of the BindableLayout.
 
-{% tabs %} 
+```
 <ContentView.Resources>
     <local:ChartValueConverter x:Key="itemsSourceConverter"/>
     <DataTemplate x:Key="TooltipTemplate">
@@ -144,11 +135,11 @@ Step 2: DataTemplate declarations with any of the BindableLayout.
         </StackLayout>
     </DataTemplate>
 </ContentView.Resources>
-{% endhighlight %}
+```
 
 Step 3: DataTemplate defined in the Series Tooltip Template.
 
-{% tabs %} 
+```
 <chart:SfChart BackgroundColor="Transparent">
 . . .
     <chart:SfChart.Series>
@@ -165,4 +156,4 @@ Step 3: DataTemplate defined in the Series Tooltip Template.
         <chart:ChartTooltipBehavior BackgroundColor="LightBlue
     </chart:SfChart.ChartBehaviors>
 </chart:SfChart>
-{% endhighlight %}
+```
