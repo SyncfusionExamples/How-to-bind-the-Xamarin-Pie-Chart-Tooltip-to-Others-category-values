@@ -45,8 +45,6 @@ public class ChartAvgValueConverter : IValueConverter
 }
 ```
 
-{% endhighlight %}
-
 ### Step 2: DataTemplate declarations.
 
 ```
