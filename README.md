@@ -1,16 +1,14 @@
-# How to bind the Xamarin.Forms pie chart tooltip to “Others” category values
+# How to bind the Xamarin.Forms pie chart tooltip to "Others" category values (SfChart)?
 
-We always like to group smaller pie chart values into the category "Others" to increase chart readability. But we also think about ways to show those grouped values in UI. 
+We always like to group smaller pie chart values into the category "Others" to increase chart readability. But we also think about ways to show those grouped values in UI.
 
-In this article, we will discuss in detail “How to show grouped values of Xamarin.Forms Pie Chart using tooltip?” By the following ways, we can display the average of clustered values, either can display individual value present in it.
+In this example illustrates how to show grouped values of [Xamarin.Forms Pie Chart](https://www.syncfusion.com/xamarin-ui-controls/xamarin-charts/chart-types) using tooltip by these following ways, you can display the average of clustered values, either can display the individual value present in it.
 
 ## How to show sum of values that grouped at Xamarin Pie Chart
 
-The example of the code below shows “How to calculate and display the average of grouped value using tooltip template?”
-
+The below code example shows how to calculate and display the average of grouped value using the tooltip template.
 
 ### Step 1: Declaration IValueConverter to calculate average values.
-
 ```
 public class ChartAvgValueConverter : IValueConverter
 {
@@ -46,7 +44,6 @@ public class ChartAvgValueConverter : IValueConverter
 ```
 
 ### Step 2: DataTemplate declarations.
-
 ```
 <ContentView.Resources>
     <local:ChartAvgValueConverter x:Key="sumOfValuesConverter"/>
@@ -60,9 +57,8 @@ public class ChartAvgValueConverter : IValueConverter
 ```
 
 ### Step 3: DataTemplate defined in the Series Tooltip Template.
- 
- ```
- <chart:SfChart BackgroundColor="Transparent">
+```
+<chart:SfChart BackgroundColor="Transparent">
 . . .
     <chart:SfChart.Series>
         <chart:PieSeries 
@@ -83,12 +79,13 @@ public class ChartAvgValueConverter : IValueConverter
 </chart:SfChart>
 ```
 
+![Tooltip template to show average of grouped values](https://user-images.githubusercontent.com/53489303/200767677-31beb677-b8f8-4367-ace3-9c55756d033d.png)
+
 ## How to bind the Xamarin.Forms Pie Chart grouped data collection to the Tooltip
 
-The example of the code below shows “How to display the values which present inside the group ‘Others’?”
+The below code example shows how to display the values, which present inside the group ‘Others’.
  
-Step 1: Declaration IValueConverter to generate BindableLayout ItemsSource
-
+### Step 1: Declaration IValueConverter to generate BindableLayout ItemsSource
 ```
 public class ChartValueConverter : IValueConverter
 {
@@ -115,8 +112,7 @@ public class ChartValueConverter : IValueConverter
 }
 ```
 
-Step 2: DataTemplate declarations with any of the BindableLayout.
-
+### Step 2: DataTemplate declarations with any of the BindableLayout.
 ```
 <ContentView.Resources>
     <local:ChartValueConverter x:Key="itemsSourceConverter"/>
@@ -135,8 +131,7 @@ Step 2: DataTemplate declarations with any of the BindableLayout.
 </ContentView.Resources>
 ```
 
-Step 3: DataTemplate defined in the Series Tooltip Template.
-
+### Step 3: DataTemplate defined in the Series Tooltip Template.
 ```
 <chart:SfChart BackgroundColor="Transparent">
 . . .
@@ -155,3 +150,19 @@ Step 3: DataTemplate defined in the Series Tooltip Template.
     </chart:SfChart.ChartBehaviors>
 </chart:SfChart>
 ```
+
+![Tooltip template shows individual value present in the others category](https://user-images.githubusercontent.com/53489303/200767964-25b1ed57-fb93-4f40-97d8-03fbed7c7ef5.png)
+
+KB article - [How to bind the Xamarin.Forms pie chart tooltip to “Others” category values](https://www.syncfusion.com/kb/11861/how-to-bind-the-xamarin-forms-pie-chart-tooltip-to-others-category-values)
+
+### Related links
+
+[Group small data points into “others”](https://help.syncfusion.com/xamarin/charts/charttypes#group-small-data-points-into-others)
+
+[Bindable Layouts in Xamarin.Forms](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/layouts/bindable-layouts)
+
+### See also
+
+[How to set size of pie/doughnut?](https://www.syncfusion.com/kb/5525/how-to-set-size-of-pie-doughnut)
+
+[How to explode the pie series slice on touch?](https://www.syncfusion.com/kb/5923/how-to-explode-the-pie-series-slice-on-touch)
